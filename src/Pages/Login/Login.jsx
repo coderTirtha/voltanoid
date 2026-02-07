@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { toast, ToastContainer } from 'react-toastify';
+import loginBanner from '/images/login.svg';
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -28,6 +29,7 @@ const Login = () => {
         <div className='bg-[#0B0D21] rounded-lg shadow-lg p-8 max-w-lg mx-4 md:mx-auto flex flex-col justify-center'>
             <div>
                 <div className='space-y-4 text-center'>
+                    <img src={loginBanner} alt="Login" className="mx-auto max-w-40" />
                     <h1 className='text-6xl font-anonymous font-black text-transparent bg-clip-text bg-linear-to-r from-[#CC45E1] to-[#6B0DEC] uppercase mx-32'>Login</h1>
                     <p className='text-gray-300 italic text-sm'>Login to your account and take the control of your power</p>
                 </div>

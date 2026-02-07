@@ -30,7 +30,7 @@ const Navbar = () => {
                         </div>
                     </nav>
                     {/* Page content here */}
-                    <div className="flex flex-col min-h-screen justify-between">
+                    <div className="flex flex-col min-h-screen justify-between space-y-8">
                         <Outlet />
                         <Footer />
                     </div>
