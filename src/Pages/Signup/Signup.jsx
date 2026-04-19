@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,7 @@ const Signup = () => {
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const password = watch('password');
     const { createUser, updateUser } = useAuth();
+    const axiosPublic = useAxiosPublic();
 
     const validatePassword = (value) => {
         if (!value) return "Password is required";
@@ -32,12 +34,21 @@ const Signup = () => {
 
     const onSubmit = (data) => {
         console.log(data);
+        const user = {
+            firstName: data?.firstName,
+            lastName: data?.lastName,
+            email: data?.email,
+            deviceKey: data?.deviceKey
+        }
         createUser(data?.email, data?.password)
             .then(res => {
                 updateUser(`${data?.firstName} ${data?.lastName}`)
                     .then(() => {
-                        toast.success('Account created successfully!');
-                        reset();
+                        axiosPublic.post('/users', user)
+                        .then(() => {
+                            toast.success('Account created successfully!');
+                            reset();
+                        })
                     })
                     .catch(err => {
                         toast.error(err.message);
@@ -53,7 +64,7 @@ const Signup = () => {
             <div>
                 <div className='space-y-4 text-center'>
                     <img src={login} alt="Login" className="mx-auto max-w-72" />
-                    <h1 className='text-6xl font-anonymous font-black text-transparent bg-clip-text bg-linear-to-r from-[#CC45E1] to-[#6B0DEC] uppercase mx-32'>Signup</h1>
+                    <h1 className='text-6xl font-anonymous font-black text-transparent bg-clip-text bg-linear-to-r from-[#CC45E1] to-[#6B0DEC] uppercase lg:mx-32'>Signup</h1>
                     <p className='text-gray-300 italic text-sm'>Create your account and unleash your power</p>
                 </div>
                 <form className='fieldset' onSubmit={handleSubmit(onSubmit)}>

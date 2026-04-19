@@ -30,7 +30,7 @@ const Login = () => {
             <div>
                 <div className='space-y-4 text-center'>
                     <img src={loginBanner} alt="Login" className="mx-auto max-w-40" />
-                    <h1 className='text-6xl font-anonymous font-black text-transparent bg-clip-text bg-linear-to-r from-[#CC45E1] to-[#6B0DEC] uppercase mx-32'>Login</h1>
+                    <h1 className='text-6xl font-anonymous font-black text-transparent bg-clip-text bg-linear-to-r from-[#CC45E1] to-[#6B0DEC] uppercase lg:mx-32'>Login</h1>
                     <p className='text-gray-300 italic text-sm'>Login to your account and take the control of your power</p>
                 </div>
                 <form className='fieldset' onSubmit={handleSubmit(onSubmit)}>
